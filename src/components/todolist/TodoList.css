@@ -1,0 +1,16 @@
+.todo-list {
+    margin-top: 20px;
+}
+
+.add-todo-btn {
+    margin-left: 5px;
+}
+
+ol {
+    width: 200px;
+    margin: 10px auto;
+}
+
+ol lh {
+    font-weight: bold;
+}
