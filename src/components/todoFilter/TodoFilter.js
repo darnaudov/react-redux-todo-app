@@ -7,18 +7,28 @@ class TodoFilter extends React.Component {
     }
 
     render() {
-        const filterTypes = ['all', 'active', 'completed'];
-        const filters = filterTypes.map((filter, i) => {
+        const filters = [{
+            text: 'all',
+            filter: 'SHOW_ALL'
+        }, {
+            text: 'active',
+            filter: 'SHOW_ACTIVE'
+        }, {
+            text: 'completed',
+            filter: 'SHOW_COMPLETED'
+        }];
+
+        const filterElements = filters.map((filter, i) => {
             const setFilter = () => {
-                this.props.setFilter(filter);
+                this.props.setFilter(filter.filter);
             };
 
-            return <a href='#' className='todo-filter' key={i} onClick={setFilter}>{filter}</a>
+            return <a href='#' className='todo-filter' key={i} onClick={setFilter}>{filter.text}</a>
         });
 
         return (
             <div>
-                {filters}
+                {filterElements}
             </div>
         );
     }

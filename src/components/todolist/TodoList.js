@@ -5,14 +5,6 @@ import TodoFilter from '../todoFilter/TodoFilter';
 import './TodoList.css';
 import store from '../../store/store';
 
-
-
-// TODO NExt
-// Add filter to the store
-// How to add multiple reducers?
-
-
-
 class TodoList extends React.Component {
     constructor(props) {
         super(props);
@@ -21,8 +13,7 @@ class TodoList extends React.Component {
         this.store = store;
 
         this.state = {
-            todoName: "",
-            filter: "all"
+            todoName: ""
         };
 
         store.subscribe(() => {
@@ -70,9 +61,10 @@ class TodoList extends React.Component {
     }
 
     setFilter(filter) {
-        this.setState({
+        store.dispatch({
+            type: 'SET_VISIBILITY_FILTER',
             filter: filter
-        })
+        });
     }
 
     deleteTodo(id) {
@@ -83,15 +75,15 @@ class TodoList extends React.Component {
     }
 
     render() {
-        const filter = this.state.filter;
-        const todos = store.getState();
-        const todoListItems = todos.map((todo, i) => {
-            if (filter !== 'all') {
-                if (todo.completed && filter ==='active') {
+        const storeState = store.getState();
+        const filter = storeState.visibilityFilter;
+        const todoListItems = storeState.todos.map((todo, i) => {
+            if (filter !== 'SHOW_ALL') {
+                if (todo.completed && filter ==='SHOW_ACTIVE') {
                     return;
                 }
 
-                if (!todo.completed && filter === 'completed') {
+                if (!todo.completed && filter === 'SHOW_COMPLETED') {
                     return;
                 }
             }
