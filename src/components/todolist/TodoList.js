@@ -1,9 +1,10 @@
 import React from 'react';
-import _ from 'lodash';
+import store from '../../store/store';
 import Todo from '../todo/Todo';
 import TodoFilter from '../todoFilter/TodoFilter';
 import './TodoList.css';
-import store from '../../store/store';
+import { VisibilityFilter } from "../../constants/constants";
+import { addTodo, toggleTodo, deleteTodo, setVisibilityFilter } from "../../actionCreators/actionCreators";
 
 class TodoList extends React.Component {
     constructor(props) {
@@ -33,13 +34,15 @@ class TodoList extends React.Component {
         return this.nextId++;
     }
 
+    todoNameChange(event) {
+        this.setState({
+            todoName: event.target.value
+        });
+    }
+
     addTodo() {
         if (this.state.todoName !== "") {
-            store.dispatch({
-                type: 'ADD_TODO',
-                name: this.state.todoName,
-                id: this.getId()
-            });
+            store.dispatch(addTodo(this.state.todoName, this.getId()));
 
             this.setState({
                 todoName: ""
@@ -47,44 +50,29 @@ class TodoList extends React.Component {
         }
     }
 
-    todoNameChange(event) {
-        this.setState({
-            todoName: event.target.value
-        });
-    }
-
     toggleTodo(id) {
-        store.dispatch({
-            type: 'TOGGLE_TODO',
-            id: id
-        });
+        store.dispatch(toggleTodo(id));
     }
 
     setFilter(filter) {
-        store.dispatch({
-            type: 'SET_VISIBILITY_FILTER',
-            filter: filter
-        });
+        store.dispatch(setVisibilityFilter(filter));
     }
 
     deleteTodo(id) {
-        store.dispatch({
-            type: "DELETE_TODO",
-            id: id
-        });
+        store.dispatch(deleteTodo(id));
     }
 
     render() {
         const storeState = store.getState();
         const filter = storeState.visibilityFilter;
         const todoListItems = storeState.todos.map((todo, i) => {
-            if (filter !== 'SHOW_ALL') {
-                if (todo.completed && filter ==='SHOW_ACTIVE') {
-                    return;
+            if (filter !== VisibilityFilter.SHOW_ALL) {
+                if (todo.completed && filter === VisibilityFilter.SHOW_ACTIVE) {
+                    return null;
                 }
 
-                if (!todo.completed && filter === 'SHOW_COMPLETED') {
-                    return;
+                if (!todo.completed && filter === VisibilityFilter.SHOW_COMPLETED) {
+                    return null;
                 }
             }
 

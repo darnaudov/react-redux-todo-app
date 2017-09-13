@@ -1,6 +1,9 @@
-function visibilityFilter(state = 'SHOW_ALL', action) {
+import actionTypes from "../constants/actionTypes";
+import { VisibilityFilter } from "../constants/constants";
+
+function visibilityFilter(state = VisibilityFilter.SHOW_ALL, action) {
     switch (action.type) {
-        case 'SET_VISIBILITY_FILTER':
+        case actionTypes.SET_VISIBILITY_FILTER:
             return action.filter;
         default:
             return state;

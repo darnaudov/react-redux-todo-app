@@ -1,21 +1,18 @@
 import React from 'react';
+import { VisibilityFilter } from "../../constants/constants";
 import './TodoFilter.css';
 
 class TodoFilter extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         const filters = [{
             text: 'all',
-            filter: 'SHOW_ALL'
+            filter: VisibilityFilter.SHOW_ALL
         }, {
             text: 'active',
-            filter: 'SHOW_ACTIVE'
+            filter: VisibilityFilter.SHOW_ACTIVE
         }, {
             text: 'completed',
-            filter: 'SHOW_COMPLETED'
+            filter: VisibilityFilter.SHOW_COMPLETED
         }];
 
         const filterElements = filters.map((filter, i) => {

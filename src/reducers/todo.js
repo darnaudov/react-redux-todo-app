@@ -1,12 +1,14 @@
-function todo(state={}, action) {
+import actionTypes from "../constants/actionTypes";
+
+function todo(state = {}, action) {
     switch (action.type) {
-        case 'ADD_TODO':
+        case actionTypes.ADD_TODO:
             return {
                 name: action.name,
                 id: action.id,
                 completed: false
             };
-        case 'TOGGLE_TODO':
+        case actionTypes.TOGGLE_TODO:
             return {
                 ...state,
                 completed: !state.completed
