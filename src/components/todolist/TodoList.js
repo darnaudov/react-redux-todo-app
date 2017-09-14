@@ -4,7 +4,7 @@ import Todo from '../todo/Todo';
 import TodoFilter from '../todoFilter/TodoFilter';
 import './TodoList.css';
 import { VisibilityFilter } from "../../constants/constants";
-import { addTodo, toggleTodo, deleteTodo, setVisibilityFilter } from "../../actionCreators/actionCreators";
+import { addTodo, toggleTodo, deleteTodo, setVisibilityFilter } from "../../actions/actions";
 
 class TodoList extends React.Component {
     constructor(props) {
@@ -17,7 +17,7 @@ class TodoList extends React.Component {
             todoName: ""
         };
 
-        store.subscribe(() => {
+        const unsubscribe = store.subscribe(() => {
             this.forceUpdate();
         });
 
