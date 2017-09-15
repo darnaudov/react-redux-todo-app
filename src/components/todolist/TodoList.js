@@ -6,7 +6,7 @@ import './TodoList.css';
 const TodoList = ({todos, toggleTodo, deleteTodo}) => {
     const todoListItems = todos.map((todo, i) => {
         return (
-            <Todo key={i} todo={todo} toggleTodo={toggleTodo} deleteTodo={deleteTodo}/>
+            <Todo key={todo.id} todo={todo} toggleTodo={toggleTodo} deleteTodo={deleteTodo}/>
         );
     });
 

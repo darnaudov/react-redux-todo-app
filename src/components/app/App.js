@@ -30,8 +30,6 @@ class App extends Component {
       this.forceUpdate();
     });
 
-    this.nextId = 1;
-
     this.addTodo = this.addTodo.bind(this);
     this.deleteTodo = this.deleteTodo.bind(this);
     this.toggleTodo = this.toggleTodo.bind(this);
@@ -39,13 +37,9 @@ class App extends Component {
     this.todoTextChange = this.todoTextChange.bind(this);
   }
 
-  getId() {
-    return this.nextId++;
-  }
-
   addTodo() {
     if (this.state.todoText !== "") {
-      store.dispatch(addTodo(this.state.todoText, this.getId()));
+      store.dispatch(addTodo(this.state.todoText));
 
       this.setState({
         todoText: ""

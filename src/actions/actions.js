@@ -1,10 +1,11 @@
 import actionTypes from "../constants/actionTypes";
 
-export function addTodo(text, id) {
+let nextTodoId = 1;
+export function addTodo(text) {
     return {
         type: actionTypes.ADD_TODO,
         text: text,
-        id: id
+        id: nextTodoId++
     };
 }
 

@@ -8,16 +8,10 @@ function todos(state = [], action) {
                 ...state,
                 todo(null, action)
             ];
-        case actionTypes.DELETE_TODO:
-            return state.filter((todo) => todo.id !== action.id);
         case actionTypes.TOGGLE_TODO:
-            return state.map((curTodo) => {
-                if (curTodo.id === action.id) {
-                    return todo(curTodo, action);
-                }
-
-                return curTodo;
-            });
+            return state.map(curTodo => todo(curTodo, action));
+        case actionTypes.DELETE_TODO:
+            return state.filter(todo => todo.id !== action.id);
         default:
             return state;
     }
