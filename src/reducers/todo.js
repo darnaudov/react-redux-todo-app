@@ -4,7 +4,7 @@ function todo(state = {}, action) {
     switch (action.type) {
         case actionTypes.ADD_TODO:
             return {
-                name: action.name,
+                text: action.text,
                 id: action.id,
                 completed: false
             };

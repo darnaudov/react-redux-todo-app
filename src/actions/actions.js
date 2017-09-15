@@ -1,9 +1,9 @@
 import actionTypes from "../constants/actionTypes";
 
-export function addTodo(name, id) {
+export function addTodo(text, id) {
     return {
         type: actionTypes.ADD_TODO,
-        name: name,
+        text: text,
         id: id
     };
 }

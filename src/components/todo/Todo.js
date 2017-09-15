@@ -1,10 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import './Todo.css';
 
-const Todo = ({todo, handleDelete, toggleTodo}) => {
+const Todo = ({todo, deleteTodo, toggleTodo}) => {
     const onDelete = (event) => {
-        handleDelete(todo.id);
+        deleteTodo(todo.id);
     };
 
     const onToggleTodo = (event) => {
@@ -17,9 +18,15 @@ const Todo = ({todo, handleDelete, toggleTodo}) => {
 
     return (
         <li>
-            <span onClick={onToggleTodo} className={spanClass}>{todo.name}</span> <button onClick={onDelete}>{'Remove'}</button>
+            <span onClick={onToggleTodo} className={spanClass}>{todo.text}</span> <button onClick={onDelete}>{'Remove'}</button>
         </li>
     );
+};
+
+Todo.propTypes = {
+    todo: PropTypes.object.isRequired,
+    deleteTodo: PropTypes.func.isRequired,
+    toggleTodo: PropTypes.func.isRequired
 };
 
 export default Todo;
