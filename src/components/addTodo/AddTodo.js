@@ -1,19 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const AddTodo = ({text, onTextChange, addTodo}) => {
+const AddTodo = ({text, onChange, onClick}) => {
     return (
         <div>
-            <input value={text} onChange={onTextChange}/>
-            <button onClick={addTodo} className="add-todo-btn">{"Add To Do"}</button>
+            <input value={text} onChange={onChange}/>
+            <button onClick={onClick} className="add-todo-btn">{"Add To Do"}</button>
         </div>
     );
 };
 
 AddTodo.propTypes = {
     text: PropTypes.string.isRequired,
-    onTextChange: PropTypes.func.isRequired,
-    addTodo: PropTypes.func.isRequired
+    onChange: PropTypes.func.isRequired,
+    onClick: PropTypes.func.isRequired
 }
 
 export default AddTodo;

@@ -1,16 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import TodoFilter from '../todoFilter/TodoFilter';
+import TodoFilterContainer from '../todoFilterContainer/TodoFilterContainer';
 import './TodoFilters.css';
+import { VisibilityFilters } from '../../constants/constants';
 
-const TodoFilters = ({filters, setFilter}) => {
-    const filterElements = filters.map((filter, i) => {
-        const onSetFilter = () => {
-            setFilter(filter.filter);
-        };
-
+const TodoFilters = () => {
+    const filterElements = VisibilityFilters.map((filter, i) => {
         return (
-            <TodoFilter key={i} onFilterClick={onSetFilter} text={filter.text} />
+            <TodoFilterContainer key={i} filter={filter.filter} text={filter.text} />
         );
     });
 
@@ -19,16 +15,6 @@ const TodoFilters = ({filters, setFilter}) => {
             {filterElements}
         </div>
     );
-};
-
-TodoFilters.propTypes = {
-    filters: PropTypes.arrayOf(
-        PropTypes.shape({
-            text: PropTypes.string.isRequired,
-            filter: PropTypes.string.isRequired
-        }).isRequired
-    ).isRequired,
-    setFilter: PropTypes.func.isRequired
 };
 
 export default TodoFilters;

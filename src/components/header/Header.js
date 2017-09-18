@@ -2,7 +2,7 @@ import React from 'react';
 import logo from '../../resources/logo.svg';
 import './Header.css';
 
-const Header = (props) => {
+const Header = () => {
     return (
         <div className="app-header">
             <img src={logo} className="app-logo" alt="logo" />

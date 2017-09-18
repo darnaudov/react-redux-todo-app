@@ -4,27 +4,23 @@ import classNames from 'classnames';
 import './Todo.css';
 
 const Todo = ({todo, deleteTodo, toggleTodo}) => {
-    const onDelete = (event) => {
-        deleteTodo(todo.id);
-    };
-
-    const onToggleTodo = (event) => {
-        toggleTodo(todo.id);
-    };
-
     const spanClass = classNames('todo', {
         completed: todo.completed
     });
 
     return (
         <li>
-            <span onClick={onToggleTodo} className={spanClass}>{todo.text}</span> <button onClick={onDelete}>{'Remove'}</button>
+            <span onClick={toggleTodo} className={spanClass}>{todo.text}</span> <button onClick={deleteTodo}>{'Remove'}</button>
         </li>
     );
 };
 
 Todo.propTypes = {
-    todo: PropTypes.object.isRequired,
+    todo: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        completed: PropTypes.bool.isRequired,
+        text: PropTypes.string.isRequired
+    }).isRequired,
     deleteTodo: PropTypes.func.isRequired,
     toggleTodo: PropTypes.func.isRequired
 };

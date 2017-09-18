@@ -1,15 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const TodoFilter = ({text, onFilterClick}) => {
+const TodoFilter = ({text, active, onClick}) => {
+    if (active) {
+        return (
+            <span className='todo-filter'>{text}</span>
+        );
+    }
+
     return (
-        <a href='#' className='todo-filter' onClick={onFilterClick}>{text}</a>
+        <a href='#' className='todo-filter' onClick={onClick}>{text}</a>
     );
 };
 
 TodoFilter.PropTypes = {
     text: PropTypes.string.isRequired,
-    onFilterClick: PropTypes.func.isRequired
+    active: PropTypes.bool.isRequired,
+    onClick: PropTypes.func.isRequired
 };
 
 export default TodoFilter;
