@@ -1,4 +1,3 @@
-import React from 'react';
 import { connect } from 'react-redux';
 import TodoList from '../todoList/TodoList';
 import { VisibilityFilter } from '../../constants/constants';

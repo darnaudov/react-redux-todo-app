@@ -1,11 +1,11 @@
-import actionTypes from "../constants/actionTypes";
+import actionTypes from '../constants/actionTypes';
+import { v4 } from 'uuid';
 
-let nextTodoId = 1;
 export function addTodo(text) {
     return {
         type: actionTypes.ADD_TODO,
         text: text,
-        id: nextTodoId++
+        id: v4()
     };
 }
 
