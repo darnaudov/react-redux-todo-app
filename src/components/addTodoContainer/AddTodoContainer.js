@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import AddTodo from '../addTodo/AddTodo';
-import { addTodo } from '../../actions/actions';
+import { addTodo } from '../../actions/actionCreators';
 
 class AddTodoContainer extends React.Component {
     constructor(props) {

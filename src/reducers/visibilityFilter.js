@@ -1,5 +1,5 @@
-import actionTypes from "../constants/actionTypes";
-import { VisibilityFilter } from "../constants/constants";
+import actionTypes from "../actions/actionTypes";
+import { VisibilityFilter } from "../constants";
 
 function visibilityFilter(state = VisibilityFilter.SHOW_ALL, action) {
     switch (action.type) {

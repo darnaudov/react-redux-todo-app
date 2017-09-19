@@ -1,4 +1,4 @@
-import actionTypes from "../constants/actionTypes";
+import actionTypes from "../actions/actionTypes";
 
 function todo(state = {}, action) {
     switch (action.type) {
