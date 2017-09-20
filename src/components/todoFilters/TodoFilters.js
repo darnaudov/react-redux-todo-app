@@ -1,7 +1,7 @@
 import React from 'react';
 import TodoFilterContainer from '../todoFilterContainer/TodoFilterContainer';
 import './TodoFilters.css';
-import { VisibilityFilters } from '../../constants/constants';
+import { VisibilityFilters } from '../../constants';
 
 const TodoFilters = () => {
     const filterElements = VisibilityFilters.map((filter, i) => {

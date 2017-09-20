@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import TodoFilter from '../todoFilter/TodoFilter';
-import { setVisibilityFilter } from "../../actions/actions";
+import { setVisibilityFilter } from "../../actions/actionCreators";
 
 const mapStateToProps = (state, ownProps) => {
     return {

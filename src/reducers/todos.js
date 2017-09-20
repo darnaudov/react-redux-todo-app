@@ -1,5 +1,5 @@
 import todo from './todo';
-import actionTypes from "../constants/actionTypes";
+import actionTypes from "../actions/actionTypes";
 
 function todos(state = [], action) {
     switch (action.type) {

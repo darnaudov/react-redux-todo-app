@@ -1,4 +1,4 @@
-import actionTypes from '../constants/actionTypes';
+import actionTypes from '../actions/actionTypes';
 import { v4 } from 'uuid';
 
 export function addTodo(text) {
