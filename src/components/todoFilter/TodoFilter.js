@@ -1,22 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
+import { VisibilityFilter } from '../../constants';
+import "./TodoFilter.css";
 
-const TodoFilter = ({text, active, onClick}) => {
-    if (active) {
-        return (
-            <span className='todo-filter'>{text}</span>
-        );
-    }
+const TodoFilter = ({filter}) => {
+    const toPath = filter === VisibilityFilter.ALL ? "" : "/" + filter;
 
     return (
-        <a href='#' className='todo-filter' onClick={onClick}>{text}</a>
+        <NavLink to={"/home" + toPath} exact className={'todo-filter'}>{filter}</NavLink>
     );
 };
 
 TodoFilter.PropTypes = {
-    text: PropTypes.string.isRequired,
-    active: PropTypes.bool.isRequired,
-    onClick: PropTypes.func.isRequired
+    filter: PropTypes.string.isRequired
 };
 
 export default TodoFilter;

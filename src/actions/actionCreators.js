@@ -22,10 +22,3 @@ export function toggleTodo(id) {
         id: id
     };
 }
-
-export function setVisibilityFilter(filter) {
-    return {
-        type: actionTypes.SET_VISIBILITY_FILTER,
-        filter: filter
-    };
-}

@@ -1,16 +1,17 @@
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 import TodoList from '../todoList/TodoList';
 import { VisibilityFilter } from '../../constants';
 import { toggleTodo, deleteTodo } from '../../actions/actionCreators';
 
 const filterTodos = (todos, visibilityFilter) => {
     return todos.filter((todo) => {
-        if (visibilityFilter !== VisibilityFilter.SHOW_ALL) {
-            if (todo.completed && visibilityFilter === VisibilityFilter.SHOW_ACTIVE) {
+        if (visibilityFilter !== VisibilityFilter.ALL) {
+            if (todo.completed && visibilityFilter === VisibilityFilter.ACTIVE) {
                 return false;
             }
     
-            if (!todo.completed && visibilityFilter === VisibilityFilter.SHOW_COMPLETED) {
+            if (!todo.completed && visibilityFilter === VisibilityFilter.COMPLETED) {
                 return false;
             }
         }
@@ -19,9 +20,9 @@ const filterTodos = (todos, visibilityFilter) => {
     });
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
     return {
-        todos: filterTodos(state.todos, state.visibilityFilter)
+        todos: filterTodos(state.todos, ownProps.match.params.filter || VisibilityFilter.ALL)
     };
 };
 
@@ -36,5 +37,5 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-const TodoListContainer = connect(mapStateToProps, mapDispatchToProps)(TodoList);
+const TodoListContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(TodoList));
 export default TodoListContainer;
