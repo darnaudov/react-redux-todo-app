@@ -1,5 +1,6 @@
 import todo from './todo';
-import actionTypes from "../actions/actionTypes";
+import actionTypes from '../actions/actionTypes';
+import { VisibilityFilter } from '../constants';
 
 function todos(state = [], action) {
     switch (action.type) {
@@ -18,3 +19,20 @@ function todos(state = [], action) {
 }
 
 export default todos;
+
+export const getVisibleTodos = (state, filter) => {
+    switch (filter) {
+        case VisibilityFilter.All:
+            return state;
+        case VisibilityFilter.ACTIVE:
+            return state.filter((todo) => {
+                return !todo.completed;
+            });
+        case VisibilityFilter.COMPLETED:
+            return state.filter((todo) => {
+                return todo.completed;
+            });
+        default:
+            return state;
+    }
+}
