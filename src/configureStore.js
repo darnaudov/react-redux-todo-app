@@ -5,7 +5,8 @@ import todoApp from './reducers/todoApp';
 
 const configureStore = () => {
     const initialState = loadState();
-    const store = createStore(todoApp, initialState);
+    const store = createStore(todoApp, initialState,
+        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
     store.subscribe(throttle(() => {
         saveState({
