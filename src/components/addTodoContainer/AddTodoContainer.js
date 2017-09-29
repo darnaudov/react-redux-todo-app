@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import AddTodo from '../addTodo/AddTodo';
 import { addTodo } from '../../actions/actionCreators';
 
@@ -15,16 +15,6 @@ class AddTodoContainer extends React.Component {
         this.todoTextChange = this.todoTextChange.bind(this);
     }
 
-    componentDidMount() {
-        this.unsubscripbe = this.context.store.subscribe(() => {
-            this.forceUpdate();
-        });
-    }
-
-    componentWillUnmount() {
-        this.unsubscripbe();
-    }
-
     todoTextChange(event) {
         this.setState({
             todoText: event.target.value
@@ -33,8 +23,7 @@ class AddTodoContainer extends React.Component {
 
     addTodo() {
         if (this.state.todoText !== "") {
-            this.context.store.dispatch(addTodo(this.state.todoText));
-    
+            this.props.dispatch(addTodo(this.state.todoText));
             this.setState({
                 todoText: ""
             });
@@ -48,8 +37,8 @@ class AddTodoContainer extends React.Component {
     }
 };
 
-AddTodoContainer.contextTypes = {
-    store: PropTypes.object
-};
+AddTodoContainer = connect()(AddTodoContainer);
 
 export default AddTodoContainer;
+
+
