@@ -1,14 +1,14 @@
 import React from 'react';
-import TodoListContainer from '../todoListContainer/TodoListContainer';
-import TodoFilters from '../todoFilters/TodoFilters';
-import AddTodoContainer from '../addTodoContainer/AddTodoContainer';
+import TodoList from '../TodoList';
+import TodoFilters from '../TodoFilters';
+import AddTodo from '../AddTodo';
 
-const Home = () => {
+function Home() {
     return (
         <div>
-            <AddTodoContainer />
+            <AddTodo />
             <TodoFilters />
-            <TodoListContainer />
+            <TodoList />
         </div>
     );
 };

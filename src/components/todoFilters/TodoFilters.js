@@ -1,5 +1,5 @@
 import React from 'react';
-import TodoFilter from '../todoFilter/TodoFilter';
+import TodoFilter from '../TodoFilter';
 import './TodoFilters.css';
 import { VisibilityFilter } from '../../constants';
 

@@ -1,9 +1,9 @@
 import React from 'react';
 import { Route, Redirect, Switch } from 'react-router-dom';
-import Header from '../header/Header';
-import Footer from '../footer/Footer';
-import Home from '../home/Home';
-import About from '../about/About';
+import Header from '../Header';
+import Footer from '../Footer';
+import Home from '../Home';
+import About from '../About';
 import './App.css';
 
 const App = () => {

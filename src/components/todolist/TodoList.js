@@ -1,9 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Todo from '../todo/Todo';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
+import Todo from '../Todo';
+import { VisibilityFilter } from '../../constants';
+import { toggleTodo, deleteTodo } from '../../actions/todoActions';
+import { getVisibleTodos } from '../../selectors';
 import './TodoList.css';
 
-const TodoList = ({todos, toggleTodo, deleteTodo}) => {
+function TodoList({todos, toggleTodo, deleteTodo}) {
     const todoListItems = todos.map((todo, i) => {
         return (
             <Todo 
@@ -37,4 +42,21 @@ TodoList.propTypes = {
     deleteTodo: PropTypes.func.isRequired
 };
 
-export default TodoList;
+const mapStateToProps = (state, ownProps) => {
+    return {
+        todos: getVisibleTodos(state, ownProps.match.params.filter || VisibilityFilter.ALL)
+    }
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        toggleTodo: (id) => {
+            dispatch(toggleTodo(id));
+        },
+        deleteTodo: (id) => {
+            dispatch(deleteTodo(id));
+        }
+    };
+};
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(TodoList));

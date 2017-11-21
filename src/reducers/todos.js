@@ -1,18 +1,18 @@
 import { combineReducers } from 'redux';
 import _ from 'lodash';
 import todo from './todo';
-import actionTypes from '../actions/actionTypes';
+import { ADD_TODO, DELETE_TODO, TOGGLE_TODO } from '../actions/todoActions';
 import { VisibilityFilter } from '../constants';
 
 function byId(state = {}, action) {
     switch (action.type) {
-        case actionTypes.ADD_TODO:
-        case actionTypes.TOGGLE_TODO:
+        case ADD_TODO:
+        case TOGGLE_TODO:
             return {
                 ...state,
                 [action.id]: todo(state[action.id], action)
             };
-        case actionTypes.DELETE_TODO:
+        case DELETE_TODO:
             return _.omit(state, action.id);
         default:
             return state;
@@ -21,12 +21,12 @@ function byId(state = {}, action) {
 
 function allIds(state = [], action) {
     switch (action.type) {
-        case actionTypes.ADD_TODO:
+        case ADD_TODO:
             return [
                 ...state,
                 action.id
             ];
-        case actionTypes.DELETE_TODO:
+        case DELETE_TODO:
             return state.filter((id) => {
                 return id !== action.id;
             })

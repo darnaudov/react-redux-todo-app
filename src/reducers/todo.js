@@ -1,14 +1,14 @@
-import actionTypes from "../actions/actionTypes";
+import { ADD_TODO, DELETE_TODO, TOGGLE_TODO } from '../actions/todoActions';
 
 function todo(state = {}, action) {
     switch (action.type) {
-        case actionTypes.ADD_TODO:
+        case ADD_TODO:
             return {
                 text: action.text,
                 id: action.id,
                 completed: false
             };
-        case actionTypes.TOGGLE_TODO:
+        case TOGGLE_TODO:
             if (state.id !== action.id) {
                 return state;
             }

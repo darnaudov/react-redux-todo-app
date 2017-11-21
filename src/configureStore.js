@@ -1,7 +1,7 @@
 import { createStore } from 'redux';
 import throttle from 'lodash/throttle';
 import { saveState, loadState  } from './localStorage';
-import todoApp from './reducers/todoApp';
+import todoApp from './reducers';
 
 const configureStore = () => {
     const initialState = loadState();

@@ -1,19 +1,46 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { addTodo } from '../../actions/todoActions';
 
-const AddTodo = ({text, onChange, onClick}) => {
-    return (
-        <div>
-            <input value={text} onChange={onChange}/>
-            <button onClick={onClick} className="add-todo-btn">{"Add To Do"}</button>
-        </div>
-    );
+class AddTodo extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            todoText: ""
+        };
+
+        this.addTodo = this.addTodo.bind(this);
+        this.todoTextChange = this.todoTextChange.bind(this);
+    }
+
+    todoTextChange(event) {
+        this.setState({
+            todoText: event.target.value
+        });
+    }
+
+    addTodo() {
+        if (this.state.todoText !== "") {
+            this.props.addTodo(this.state.todoText);
+            this.setState({
+                todoText: ""
+            });
+        }   
+    }
+
+    render() {
+        return (
+            <div>
+                <input value={this.state.todoText} onChange={this.todoTextChange}/>
+                <button onClick={this.addTodo} className="add-todo-btn">{"Add To Do"}</button>
+            </div>
+        );
+    }
 };
 
-AddTodo.propTypes = {
-    text: PropTypes.string.isRequired,
-    onChange: PropTypes.func.isRequired,
-    onClick: PropTypes.func.isRequired
-}
+const mapDispatchToProps = (dispatch) => ({
+    addTodo: (text) => dispatch(addTodo(text))
+});
 
-export default AddTodo;
+export default connect(null, mapDispatchToProps)(AddTodo);
